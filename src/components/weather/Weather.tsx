@@ -90,9 +90,9 @@ useEffect(() => {
             </div>
         </div>
         {/*  dropDown */}
-   
+                        
         {modal ? (
-            <div ref={modalclose} className="bg-white w-80 sm:w-96 h-48 text-black absolute mt-2 drop-shadow-lg border-none rounded-lg p-4 right-0">
+            <div ref={modalclose} className="opacity-100 transition-all bg-white w-80 sm:w-96 h-48 text-black absolute mt-2 drop-shadow-lg border-none rounded-lg p-4 right-0">
             <h1 className="text-4xl font-bold">{weatherData?.name}</h1>
             <div className="text-xl text-gray-400">{weatherData?.weather[0].main}</div>
             <div className="flex justify-around mt-4">
@@ -141,7 +141,9 @@ useEffect(() => {
             </div>
         </div>
         ) : (
-          null
+          <div className="bg-white w-80 sm:w-96 h-48 opacity-0 rounded-lg p-4 right-52 absolute">
+
+          </div>
         )}
     </>
   );
