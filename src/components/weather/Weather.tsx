@@ -7,69 +7,46 @@ interface weather {
   name: String;
   main: {
     temp: number;
-    feels_like :number;
-    temp_max : number;
-    temp_min : number;
+    feels_like: number;
+    temp_max: number;
+    temp_min: number;
   };
   weather: [
     {
       icon: String;
       description: String;
-      main: String
+      main: String;
     }
   ];
 }
 
-const Weather = () => {
-  const [weatherData, setWeatherData] = useState<weather>();
-  const [Icon, setIcon] = useState<string>("");
+type Props = {
+  weatherData: weather | undefined;
+  Icon: String
+}
+
+const Weather:React.FC<Props> = ({weatherData, Icon }) => {
   const [modal, setModal] = useState<boolean>(false);
   const modalclose = useRef<HTMLDivElement>(null)
 
-  const location = useGeoLocation();
-  const lat: number | undefined = location.coordinates?.lat;
-  const lng: number | undefined = location.coordinates?.lng;
-
-  const WeatherGet = async () => {
-    const API_KEY = "29975ab2f4a94fa0957a44c383fe3b08";
-
-    await axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric&lang=kr`
-      )
-      .then((res) => {
-        setWeatherData(res.data);
-        setIcon(res.data.weather[0].icon);
-      });
-  };
-
   let iconurl = "http://openweathermap.org/img/w/" + Icon + ".png";
 
-
   useEffect(() => {
-    if (lat !== 0) {
-      WeatherGet();
-    }
-  }, [lat, lng]);
-;
-
-
-useEffect(() => {
-    const clickOutside = (e: any) => {
-      if (modal && !modalclose.current?.contains(e.target)) {
-        setModal(false)
+      const clickOutside = (e: any) => {
+        if (modal && !modalclose.current?.contains(e.target)) {
+          setModal(false)
+        }
       }
-    }
-    document.addEventListener('mousedown', clickOutside)
-    return () => {
-      document.removeEventListener('mousedown', clickOutside)
-    }
-  }, [modal])
+      document.addEventListener('mousedown', clickOutside)
+      return () => {
+        document.removeEventListener('mousedown', clickOutside)
+      }
+    }, [modal])
 
 
   return (
     <>
-        <div className="flex flex-col cursor-pointer"  onClick={() => setModal(true)}>
+        <div className="flex flex-col cursor-pointer bg-black/30 rounded-xl p-1"  onClick={() => setModal(true)}>
             <div className="flex gap-2 items-center">
                 <div>
                     {weatherData ? (
@@ -92,7 +69,7 @@ useEffect(() => {
         {/*  dropDown */}
                         
         {modal ? (
-            <div ref={modalclose} className="opacity-100 transition-all bg-white w-80 sm:w-96 h-48 text-black absolute mt-2 drop-shadow-lg border-none rounded-lg p-4 right-0">
+            <div ref={modalclose} className="opacity-100 transition-all bg-white/80 w-80 sm:w-96 h-48 text-black absolute mt-2 drop-shadow-lg border-none rounded-lg p-4 right-0">
             <h1 className="text-4xl font-bold">{weatherData?.name}</h1>
             <div className="text-xl text-gray-400">{weatherData?.weather[0].main}</div>
             <div className="flex justify-around mt-4">
