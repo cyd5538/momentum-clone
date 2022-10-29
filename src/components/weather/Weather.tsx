@@ -42,7 +42,10 @@ const Weather:React.FC<Props> = ({weatherData, Icon }) => {
         document.removeEventListener('mousedown', clickOutside)
       }
     }, [modal])
+  
 
+  
+  
 
   return (
     <>
