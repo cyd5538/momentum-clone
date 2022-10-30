@@ -4,6 +4,7 @@ import { useAxios } from "./Hooks/useAxios";
 import useGeoLocation from "./Hooks/useGeoLocation";
 import axios from "axios";
 import Day from "./day/Day";
+import HomeName from "./components/Name/HomeName";
 
 interface weather {
   name: String;
@@ -30,6 +31,7 @@ interface pic {
 
 function App() {
   const [name, setName] = useState<string>("");
+  const [todo, setTodo] = useState<string>("");
   const [tutorial, setTutorial] = useState<boolean>(false);
   const [data, setData] = useState<pic>();
   const [weatherData, setWeatherData] = useState<weather>();
@@ -41,11 +43,10 @@ function App() {
   const lng: number | undefined = location.coordinates?.lng;
 
   const WeatherGet = async () => {
-    const API_KEY = "29975ab2f4a94fa0957a44c383fe3b08";
 
     await axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric&lang=kr`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=29975ab2f4a94fa0957a44c383fe3b08&units=metric&lang=kr`
       )
       .then((res) => {
         setWeatherData(res.data);
@@ -61,6 +62,8 @@ function App() {
 
   const search = weatherData?.weather[0].main;
 
+
+
   const { response, loading, error } = useAxios({
     method: "get",
     url: `${search}&client_id=Akd0vXXXO0l9zVUmQ-QuFMkPVkIcu51vPa-0Kif4z08&orientation=landscape&per_page=20`,
@@ -71,16 +74,19 @@ function App() {
       // 20개 중에 랜덤으로 한개 추출
       let sPick = Math.floor(Math.random() * response?.data.results.length);
       setData(response?.data.results[sPick]);
-      console.log(response?.data.results[sPick]);
     }
   }, [response]);
 
   const handleSubmitName = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setName(name);
+    localStorage.setItem("name", JSON.stringify(name));
     setTutorial(true);
   }
   
+  const LOCALSTORAGE_NAME = localStorage.getItem("name")?.replace(/\"/gi, "");
+
+
   if (loading) {
     return (
       <div
@@ -115,15 +121,15 @@ function App() {
         className="h-screen w-full object-cover"
       />
 
-      {!tutorial ? (
+      {!LOCALSTORAGE_NAME ? (
         <div className="absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2  rounded-xl">
-          <div className="text-5xl font-bold text-center">Hello, What's your name?</div>
+            <div className="text-5xl font-bold text-center">Hello, What's your name? </div>
           <form onSubmit={handleSubmitName} className="mt-8">
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               type="text"
-              className="border-b-2 font-bold w-full bg-transparent text-4xl pb-4 text-center outline-none"
+              className="border-b-2 font-boldf w-full bg-transparent text-4xl pb-4 text-center outline-none"
             />
           </form>
         </div>
@@ -134,8 +140,14 @@ function App() {
           </div>
           <div className="absolute top-1/4 right-1/2 translate-x-2/4 text-white text-7xl font-bold p-4 rounded-xl">
             <Day />
-            <div className="text-5xl text-center mb-4">Hello {name}</div>
+            <HomeName name={name} setName={setName} LOCALSTORAGE_NAME={LOCALSTORAGE_NAME}/>
             <div className="text-center text-3xl">What is your main focus for today?</div>
+            <input
+              value={todo}
+              onChange={(e) => setTodo(e.target.value)}
+              type="text"
+              className="border-b-2 font-boldf w-full bg-transparent text-2xl pb-2 text-center outline-none"
+            />
           </div>
         </>
       )}
