@@ -4,7 +4,8 @@ import { useAxios } from "./Hooks/useAxios";
 import useGeoLocation from "./Hooks/useGeoLocation";
 import axios from "axios";
 import Day from "./day/Day";
-import HomeName from "./components/Name/HomeName";
+import HomeName from "./components/HomeName/HomeName";
+import HomeTodo from "./components/HomeTodo/HomeTodo";
 
 interface weather {
   name: String;
@@ -31,7 +32,6 @@ interface pic {
 
 function App() {
   const [name, setName] = useState<string>("");
-  const [todo, setTodo] = useState<string>("");
   const [tutorial, setTutorial] = useState<boolean>(false);
   const [data, setData] = useState<pic>();
   const [weatherData, setWeatherData] = useState<weather>();
@@ -141,13 +141,7 @@ function App() {
           <div className="absolute top-1/4 right-1/2 translate-x-2/4 text-white text-7xl font-bold p-4 rounded-xl">
             <Day />
             <HomeName name={name} setName={setName} LOCALSTORAGE_NAME={LOCALSTORAGE_NAME}/>
-            <div className="text-center text-3xl">What is your main focus for today?</div>
-            <input
-              value={todo}
-              onChange={(e) => setTodo(e.target.value)}
-              type="text"
-              className="border-b-2 font-boldf w-full bg-transparent text-2xl pb-2 text-center outline-none"
-            />
+            <HomeTodo />
           </div>
         </>
       )}
