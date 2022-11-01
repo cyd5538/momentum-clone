@@ -46,7 +46,7 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
           ) : (
             <form onSubmit={HandleEdit} className="w-1/2">
                 <input
-                className="border-b-2 w-full font-bold bg-transparent text-4xl pb-4 text-center outline-none"
+                className="border-b-2 border-rose-600 w-full font-bold bg-transparent text-4xl pb-4 text-center outline-none"
                 type="text"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
@@ -55,7 +55,7 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
           )}
           <div
             onClick={() => setModal(true)}
-            className="rounded-full bg-white/60 p-1  text-2xl text-center absolute hidden top-2 left-[-30px] md:left-8 text-black group-hover:block"
+            className="rounded-full bg-black/60 p-1  text-2xl text-center absolute hidden top-2 left-[-30px] md:left-2 text-black group-hover:block"
           >
             <BsThreeDots />
           </div>
@@ -63,7 +63,7 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
             <div 
             ref={modalclose} 
             onClick={() => setEdit(true)}
-            className="text-sm cursor-pointer hover:bg-neutral-300 hover:text-gray-500 font-semibold absolute top-6 left-[-100px] text-black bg-white/100 p-3">
+            className="text-sm cursor-pointer hover:bg-neutral-300 hover:text-gray-500 font-semibold absolute top-6 left-[-100px] text-black bg-black/100 p-3">
               Edit your Name
             </div>
           ) : (

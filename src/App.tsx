@@ -6,6 +6,7 @@ import axios from "axios";
 import Day from "./day/Day";
 import HomeName from "./components/HomeName/HomeName";
 import HomeTodo from "./components/HomeTodo/HomeTodo";
+import FamousSayings from "./components/FamousSayings/FamousSayings";
 
 interface weather {
   name: String;
@@ -138,10 +139,13 @@ function App() {
           <div className="absolute right-4 top-4 z-10">
             <Weather Icon={Icon} weatherData={weatherData} />
           </div>
-          <div className="absolute top-1/4 right-1/2 translate-x-2/4 text-white text-7xl font-bold p-4 rounded-xl">
+          <div className="absolute top-1/4 right-1/2 translate-x-2/4 text-black text-7xl font-bold p-4 rounded-xl">
             <Day />
             <HomeName name={name} setName={setName} LOCALSTORAGE_NAME={LOCALSTORAGE_NAME}/>
             <HomeTodo />
+          </div>
+          <div>
+            <FamousSayings />
           </div>
         </>
       )}
