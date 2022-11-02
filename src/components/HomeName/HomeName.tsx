@@ -12,6 +12,7 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
   const modalclose = useRef<HTMLDivElement>(null);
   const [edit, setEdit] = useState<boolean>(false);
   const [editName, setEditName] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
     const clickOutside = (e: any) => {
@@ -32,21 +33,30 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
     setEdit(false);
   }
 
+  const handleEditMove = async () => {
+    await setModal(false);
+    await setEdit(true)
+    if(inputRef.current !== undefined && inputRef.current !== null){
+      inputRef.current.focus()
+    }
+  }
+
   return (
     <>
       <div className="text-center ">
-        <div className="text-4xl text-center mb-4 relative group flex gap-2 justify-center">
+        <div className="text-3xl text-center mb-4 relative group flex gap-2 justify-center">
           <div>
             Hello
           </div>
           {!edit ? (
-            <div className="w-1/2">
+            <div className="w-2/5 flex-initial">
                 <span>{name ? name : LOCALSTORAGE_NAME}</span>
             </div>
           ) : (
-            <form onSubmit={HandleEdit} className="w-1/2">
+            <form onSubmit={HandleEdit} className="w-2/5 flex-initial">
                 <input
-                className="border-b-2 border-rose-600 w-full font-bold bg-transparent text-4xl pb-4 text-center outline-none"
+                ref={inputRef}
+                className="border-b-2 border-rose-600 w-full font-bold bg-transparent text-3xl pb-4 text-center outline-none"
                 type="text"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
@@ -55,15 +65,15 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
           )}
           <div
             onClick={() => setModal(true)}
-            className="rounded-full bg-black/60 p-1  text-2xl text-center absolute hidden top-2 left-[-30px] md:left-2 text-black group-hover:block"
+            className="rounded-full bg-white/60 p-1  text-2xl text-center absolute hidden top-2 left-[-30px] md:left-2 text-black group-hover:block"
           >
             <BsThreeDots />
           </div>
           {modal ? (
             <div 
             ref={modalclose} 
-            onClick={() => setEdit(true)}
-            className="text-sm cursor-pointer hover:bg-neutral-300 hover:text-gray-500 font-semibold absolute top-6 left-[-100px] text-black bg-black/100 p-3">
+            onClick={handleEditMove}
+            className="text-sm cursor-pointer hover:bg-neutral-300 hover:text-gray-500 font-semibold absolute top-6 left-[-100px] text-black bg-white/100 p-3">
               Edit your Name
             </div>
           ) : (

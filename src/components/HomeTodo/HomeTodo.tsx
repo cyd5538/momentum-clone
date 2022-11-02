@@ -14,6 +14,7 @@ const HomeTodo = () => {
   const [todoComplete, setTodoComplete] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
   const modalclose = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleHomeTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,16 +38,17 @@ const HomeTodo = () => {
     };
   }, [modal]);
 
-  const handleDelete = () => {
-    localStorage.removeItem("hometodo");
-    setTodos([]);
+  const handleDelete = async () => {
+    await localStorage.removeItem("hometodo");
+    await setTodos([]);
+    inputRef.current.focus()
   }
-  const handleClear = () => {
-    localStorage.removeItem("hometodo");
-    setTodos([]);
-    setTodo("");
+  const handleClear = async () => {
+    await localStorage.removeItem("hometodo");
+    await setTodos([]);
+    await setTodo("");
+    inputRef.current.focus()
   }
-
 
   return (
     <>
@@ -91,6 +93,7 @@ const HomeTodo = () => {
           </div>
           <form onSubmit={handleHomeTodo}>
             <input
+              ref={inputRef}
               value={todo}
               onChange={(e) => setTodo(e.target.value)}
               type="text"

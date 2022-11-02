@@ -37,10 +37,9 @@ const FamousSayings = () => {
         },
     ]
     const sayingsRandom = sayings[Math.floor(Math.random() * sayings.length)];
-    console.log(sayingsRandom)
   return (
     <div className='text-base text-center fixed bottom-4 text-black right-1/2 translate-x-2/4'>
-        {sayingsRandom.say}
+        "{sayingsRandom.say}"
     </div>
   )
 }

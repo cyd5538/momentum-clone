@@ -7,6 +7,7 @@ import Day from "./day/Day";
 import HomeName from "./components/HomeName/HomeName";
 import HomeTodo from "./components/HomeTodo/HomeTodo";
 import FamousSayings from "./components/FamousSayings/FamousSayings";
+import TodoList from "./components/TodoList/TodoList";
 
 interface weather {
   name: String;
@@ -61,9 +62,10 @@ function App() {
     }
   }, [lat, lng]);
 
-  const search = weatherData?.weather[0].main;
 
-
+  const search = 'snow'
+  // 날씨에 맞는 사진을 가져오니깐 폰트색상과 매치가 안됨.
+  // const search = weatherData?.weather[0].main;
 
   const { response, loading, error } = useAxios({
     method: "get",
@@ -146,6 +148,9 @@ function App() {
           </div>
           <div>
             <FamousSayings />
+          </div>
+          <div>
+            <TodoList />
           </div>
         </>
       )}
