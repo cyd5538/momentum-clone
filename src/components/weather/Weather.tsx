@@ -119,9 +119,7 @@ const Weather:React.FC<Props> = ({weatherData, Icon }) => {
             </div>
         </div>
         ) : (
-          <div className="bg-white w-80 sm:w-96 h-48 opacity-0 rounded-lg p-4 right-52 absolute">
-
-          </div>
+            null
         )}
     </>
   );

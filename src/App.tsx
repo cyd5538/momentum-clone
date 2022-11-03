@@ -8,6 +8,7 @@ import HomeName from "./components/HomeName/HomeName";
 import HomeTodo from "./components/HomeTodo/HomeTodo";
 import FamousSayings from "./components/FamousSayings/FamousSayings";
 import TodoList from "./components/TodoList/TodoList";
+import Search from "./components/Search/Search";
 
 interface weather {
   name: String;
@@ -151,6 +152,9 @@ function App() {
           </div>
           <div>
             <TodoList />
+          </div>
+          <div>
+            <Search />
           </div>
         </>
       )}
