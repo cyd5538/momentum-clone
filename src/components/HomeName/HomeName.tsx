@@ -4,10 +4,9 @@ import { BsThreeDots } from "react-icons/bs";
 type Props = {
   name: String;
   setName: React.Dispatch<React.SetStateAction<string>>;
-  LOCALSTORAGE_NAME: String;
 };
 
-const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
+const HomeName: React.FC<Props> = ({ name, setName,  }) => {
   const [modal, setModal] = useState<boolean>(false);
   const modalclose = useRef<HTMLDivElement>(null);
   const [edit, setEdit] = useState<boolean>(false);
@@ -50,7 +49,7 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
           </div>
           {!edit ? (
             <div className="w-auto flex-initial">
-                <span>{name ? name : LOCALSTORAGE_NAME}</span>
+                <span>{name}</span>
             </div>
           ) : (
             <form onSubmit={HandleEdit} className="w-1/2 flex-initial">

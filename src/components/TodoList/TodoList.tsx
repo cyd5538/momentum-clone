@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import TodoItem from "./TodoItem";
 
 interface textlist {
@@ -16,16 +16,42 @@ const TodoList = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text) {
-      setTextList([...textlist, { id: Date.now(), text, isBoolean: false }]);
+      const newTask = { id: Date.now(), text, isBoolean: false }
+      setTextList([...textlist, newTask]);
+      localStorage.setItem("localTasks", JSON.stringify([...textlist, newTask]));
       setText("");
     }
   };
 
+  useEffect(()=>{
+    if(localStorage.getItem("localTasks")){
+        const storedList = JSON.parse(localStorage.getItem("localTasks"));
+        setTextList(storedList);
+    }
+  },[])
+
+  const ModalToggle = () => {
+    if(modal === true){
+      localStorage.setItem("todoModal", JSON.stringify(false));
+      setModal(false)
+    }else{
+      localStorage.setItem("todoModal", JSON.stringify(true));
+      setModal(true)
+    }
+  }
+
+  useEffect(() => {
+    if(localStorage.getItem("todoModal")){
+      const modal = JSON.parse(localStorage.getItem("todoModal"));
+      setModal(modal);
+    }
+  },[])
+
   return (
     <div>
       <div
-        className="text-black font-bold fixed bottom-6 right-4"
-        onClick={() => setModal(!modal)}
+        className="cursor-pointer   text-black font-bold fixed bottom-6 right-4"
+        onClick={ModalToggle}
       >
         Todo
       </div>

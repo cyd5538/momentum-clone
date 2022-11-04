@@ -28,6 +28,7 @@ const TodoItem: React.FC<Props> = ({
   const [modal, setModal] = useState<boolean>(false);
   const modalclose = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     const clickOutside = (e: any) => {
       if (modal && !modalclose.current?.contains(e.target)) {
@@ -40,17 +41,20 @@ const TodoItem: React.FC<Props> = ({
     };
   }, [modal]);
 
+  
   const handleDelete = (id: number) => {
-    setTextList(textlist.filter((text) => text.id !== id));
+    const deleted = textlist.filter((text) => text.id !== id)
+    setTextList(deleted);
+    localStorage.setItem("localTasks", JSON.stringify(deleted))
   };
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
-    setTextList(
-      textlist.map((text) =>
-        text.id === id ? { ...text, text: editTodo } : text
-      )
-    );
+    const editedTodo =  textlist.map((text) =>
+      text.id === id ? { ...text, text: editTodo } : text
+    )
+    setTextList(editedTodo);
+    localStorage.setItem("localTasks", JSON.stringify(editedTodo))
     setEdit(true);
   };
 
@@ -63,12 +67,13 @@ const TodoItem: React.FC<Props> = ({
   };
 
   const handleDone = (id: number) => {
-    setTextList(
-      textlist.map((text) =>
-        text.id === id ? { ...text, isBoolean: !text.isBoolean } : text
-      )
-    );
+    const editedTodo =  textlist.map((text) =>
+       text.id === id ? { ...text, isBoolean: !text.isBoolean } : text
+    )
+    setTextList(editedTodo);
+    localStorage.setItem("localTasks", JSON.stringify(editedTodo))
   };
+
 
   return (
     <div className="w-full flex items-center gap-2 mb-2">

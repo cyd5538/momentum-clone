@@ -3,7 +3,7 @@ import Weather from "./components/weather/Weather";
 import { useAxios } from "./Hooks/useAxios";
 import useGeoLocation from "./Hooks/useGeoLocation";
 import axios from "axios";
-import Day from "./day/Day";
+import Day from "./components/day/Day";
 import HomeName from "./components/HomeName/HomeName";
 import HomeTodo from "./components/HomeTodo/HomeTodo";
 import FamousSayings from "./components/FamousSayings/FamousSayings";
@@ -88,10 +88,15 @@ function App() {
     setTutorial(true);
   }
   
-  const LOCALSTORAGE_NAME = localStorage.getItem("name")?.replace(/\"/gi, "");
+  useEffect(() => {
+    if(localStorage.getItem("name")){
+      const name = JSON.parse(localStorage.getItem("name"));
+      setName(name);
+    }
+  },[])
 
 
-  if (loading) {
+  if (loading) {  
     return (
       <div
         className="w-full h-screen flex items-center justify-center"
@@ -125,7 +130,7 @@ function App() {
         className="h-screen w-full object-cover"
       />
 
-      {!LOCALSTORAGE_NAME ? (
+      {!name ? (
         <div className="absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2  rounded-xl">
             <div className="text-5xl font-bold text-center">Hello, What's your name? </div>
           <form onSubmit={handleSubmitName} className="mt-8">
@@ -142,9 +147,9 @@ function App() {
           <div className="absolute right-4 top-4 z-10">
             <Weather Icon={Icon} weatherData={weatherData} />
           </div>
-          <div className="absolute top-1/4 right-1/2 translate-x-2/4 text-black text-7xl font-bold p-4 rounded-xl">
+          <div className="absolute top-1/4 right-1/2 translate-x-2/4 text-black text-6xl font-bold p-4 rounded-xl">
             <Day />
-            <HomeName name={name} setName={setName} LOCALSTORAGE_NAME={LOCALSTORAGE_NAME}/>
+            <HomeName name={name} setName={setName}/>
             <HomeTodo />
           </div>
           <div>
