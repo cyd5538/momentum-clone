@@ -70,7 +70,7 @@ const HomeTodo = () => {
               <div>{LOCALSTORAGE_HOMETODO.todo}</div>
             )}
             <div className="relative">
-              <div onClick={() => setModal(true)}><BsThreeDots /></div>
+              <div onClick={() => setModal(!modal)}><BsThreeDots /></div>
               {modal ? 
                 <div ref={modalclose} className="font-light w-36 h-16  absolute top-6 right-[-120px] bg-white text-sm text-black flex-row items-center justify-center">
                   <div onClick={handleDelete} className="w-36 h-8 flex items-center justify-start p-2 gap-2 hover:bg-slate-200 cursor-pointer">

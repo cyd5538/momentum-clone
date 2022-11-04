@@ -44,16 +44,16 @@ const HomeName: React.FC<Props> = ({ name, setName, LOCALSTORAGE_NAME }) => {
   return (
     <>
       <div className="text-center ">
-        <div className="text-3xl text-center mb-4 relative group flex gap-2 justify-center">
+        <div className="text-3xl text-center mb-4 relative group gap-2 flex justify-center">
           <div>
             Hello
           </div>
           {!edit ? (
-            <div className="w-2/5 flex-initial">
+            <div className="w-auto flex-initial">
                 <span>{name ? name : LOCALSTORAGE_NAME}</span>
             </div>
           ) : (
-            <form onSubmit={HandleEdit} className="w-2/5 flex-initial">
+            <form onSubmit={HandleEdit} className="w-1/2 flex-initial">
                 <input
                 ref={inputRef}
                 className="border-b-2 border-rose-600 w-full font-bold bg-transparent text-3xl pb-4 text-center outline-none"

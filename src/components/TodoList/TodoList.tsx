@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 
 interface textlist {
@@ -11,19 +11,7 @@ const TodoList = () => {
   const [text, setText] = useState<string>("");
   const [textlist, setTextList] = useState<textlist[]>([]);
   const [modal, setModal] = useState<boolean>(false);
-  const modalclose = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const clickOutside = (e: any) => {
-      if (modal && !modalclose.current?.contains(e.target)) {
-        setModal(false);
-      }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
-  }, [modal]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,18 +20,17 @@ const TodoList = () => {
       setText("");
     }
   };
-  console.log(textlist)
+
   return (
     <div>
       <div
         className="text-black font-bold fixed bottom-6 right-4"
-        onClick={() => setModal(true)}
+        onClick={() => setModal(!modal)}
       >
         Todo
       </div>
       {modal ? (
         <div
-          ref={modalclose}
           className="absolute bottom-12 right-4 w-60 h-auto p-4 bg-white "
         >
           <div className="text-black">

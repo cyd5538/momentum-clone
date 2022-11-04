@@ -42,14 +42,14 @@ const Search = () => {
   };
 
   return (
-    <div className="fixed top-2 left-2 text-black flex items-center">
+    <div className="fixed top-2 left-4 text-black flex items-center">
       <div className="mr-2">Links</div>
       <form className="flex items-center" onSubmit={handler}>
         <span className="mr-2">
           <BsSearch />
         </span>
         <input
-          className="pb-2 bg-transparent border-b-2 border-black"
+          className="pb-2 pl-2 bg-transparent border-b-2 border-black"
           type="text"
           onChange={(e) => setText(e.target.value)}
         />
@@ -77,7 +77,7 @@ const Search = () => {
             >
               <span className="w-6 flex justify-center ">
                 <FcGoogle />
-              </span>{" "}
+              </span>
               Google
             </div>
             <div
@@ -86,7 +86,7 @@ const Search = () => {
             >
               <span className="w-6 flex justify-center bold text-lime-500">
                 N
-              </span>{" "}
+              </span>
               Naver
             </div>
           </div>
