@@ -50,16 +50,16 @@ const TodoList = () => {
   return (
     <div>
       <div
-        className="cursor-pointer   text-black font-bold fixed bottom-6 right-4"
+        className="cursor-pointer text-white dark:text-black font-bold fixed bottom-6 right-4"
         onClick={ModalToggle}
       >
         Todo
       </div>
       {modal ? (
         <div
-          className="absolute bottom-12 right-4 w-60 h-auto p-4 bg-white "
+          className="absolute bottom-12 right-4 w-60 h-auto p-4 bg-white dark:bg-black/70  "
         >
-          <div className="text-black">
+          <div className="text-black dark:text-white">
             {textlist.map((text) => (
               <TodoItem
                 key={text.id}
@@ -76,7 +76,7 @@ const TodoList = () => {
               type="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className="w-full text-black"
+              className="w-full text-black dark:bg-black/80 dark:text-white"
               placeholder="New Todo"
             />
           </form>

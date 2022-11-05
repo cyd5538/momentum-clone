@@ -9,6 +9,7 @@ import HomeTodo from "./components/HomeTodo/HomeTodo";
 import FamousSayings from "./components/FamousSayings/FamousSayings";
 import TodoList from "./components/TodoList/TodoList";
 import Search from "./components/Search/Search";
+import Etc from "./components/etc/Etc";
 
 interface weather {
   name: String;
@@ -123,7 +124,7 @@ function App() {
   }
 
   return (
-    <div className="h-screen w-full  text-white relative">
+    <div className="h-screen w-full  text-white dark:text-black relative">
       <img
         src={data?.urls.full}
         alt=""
@@ -147,7 +148,7 @@ function App() {
           <div className="absolute right-4 top-4 z-10">
             <Weather Icon={Icon} weatherData={weatherData} />
           </div>
-          <div className="absolute top-1/4 right-1/2 translate-x-2/4 text-black text-6xl font-bold p-4 rounded-xl">
+          <div className="bg-black/50 dark:bg-white/50  absolute top-1/4 right-1/2 translate-x-2/4 text-black text-6xl font-bold p-8 rounded-xl">
             <Day />
             <HomeName name={name} setName={setName}/>
             <HomeTodo />
@@ -160,6 +161,9 @@ function App() {
           </div>
           <div>
             <Search />
+          </div>
+          <div>
+            <Etc />
           </div>
         </>
       )}

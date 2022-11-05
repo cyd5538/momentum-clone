@@ -68,16 +68,16 @@ const HomeTodo = () => {
 
   return (
     <div>
-      <div className="text-3xl flex flex-col gap-2">
+      <div className="text-2xl text-white dark:text-black flex flex-col gap-2">
         {hometodo?.length !== 1 ? (
           <>
             <div>What is your main focus for today?</div>
-            <form onSubmit={handleHomeTodo}>
+            <form onSubmit={handleHomeTodo} className="flex pt-4 justify-center">
               <input
                 ref={inputFocus}
                 value={todo}
                 onChange={(e) => todos(e.target.value)}
-                className="bg-transparent border-b-2 border-b-black"
+                className="bg-transparent border-b-2 border-b-black "
                 type="text"
               />
             </form>
@@ -85,20 +85,22 @@ const HomeTodo = () => {
         ) : (
           <div className="w-full text-center mt-4">
             <div className="mb-4">Today</div>
-            <div className="group relative gap-2 w-96 m-auto">
-              <div className="hidden  z-10 group-hover:block hover:block absolute top-5 left-[80px]" onClick={() => checktodo(hometodo[0].id)}>{hometodo[0]?.isBoolean ? <BsCheckSquareFill className="pt-1" size={25} /> : <BsCheckSquare className="pt-1" size={25} />}</div>
-              {hometodo[0].isBoolean ? <s className="relative  top-4">{hometodo[0]?.todo}</s> : <div className="relative top-4">{hometodo[0]?.todo}</div>}
-              <div onClick={() => setModal(true)} className="hidden z-10 group-hover:block hover:block absolute top-5 right-[80px]">
-                <div><BsThreeDots /></div>
-                {modal ? 
-                <>
-                  <div ref={modalclose} className="absolute text-sm bg-white">
-                    <div onClick={handleEdit} className="font-light cursor-pointer hover:bg-slate-300 pl-2 pr-2 pb-1 pt-1">edit</div>
-                    <div onClick={handleClear} className="font-light cursor-pointer hover:bg-slate-300 pl-2 pr-2 pb-1 pt-1">clear</div>
-                  </div>
-                </>:<></>}
+            <div className="flex justify-center w-full m-auto">
+              <div className="group flex justify-space items-center gap-4 ">
+                <div className=" hidden  z-10 group-hover:block hover:block " onClick={() => checktodo(hometodo[0].id)}>{hometodo[0]?.isBoolean ? <BsCheckSquareFill className="pt-1" size={25} /> : <BsCheckSquare className="pt-1" size={25} />}</div>
+                {hometodo[0].isBoolean ? <s className="">{hometodo[0]?.todo}</s> : <div className="">{hometodo[0]?.todo}</div>}
+                <div onClick={() => setModal(true)} className=" hidden z-10 group-hover:block hover:block ">
+                  <div><BsThreeDots /></div>
+                  {modal ? 
+                  <>
+                    <div ref={modalclose} className="absolute text-sm bg-gray-500">
+                      <div onClick={handleEdit} className="font-light cursor-pointer dark:bg-black dark:text-white hover:bg-slate-600 pl-2 pr-2 pb-1 pt-1">edit</div>
+                      <div onClick={handleClear} className="font-light cursor-pointer dark:bg-black dark:text-white hover:bg-slate-600 pl-2 pr-2 pb-1 pt-1">clear</div>
+                    </div>
+                  </>:<></>}
+                </div>
               </div>
-            </div>
+          </div>
           </div>
         )}
       </div>

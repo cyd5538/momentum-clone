@@ -11,7 +11,7 @@ const Day = () => {
       }, []);
 
   return (
-    <div className='mb-6 text-center'>{clockState}</div>
+    <div className='mb-6 text-center dark:text-black  text-white'>{clockState}</div>
   )
 }
 

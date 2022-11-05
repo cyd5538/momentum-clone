@@ -93,7 +93,7 @@ const TodoItem: React.FC<Props> = ({
             ref={inputRef}
             value={editTodo}
             onChange={(e) => setEditTodo(e.target.value)}
-            className=""
+            className="bg-white text-black dark:bg-black/90 dark:text-white"
           />
         </form>
       )}
@@ -102,11 +102,11 @@ const TodoItem: React.FC<Props> = ({
           <BsThreeDots />
         </div>
         {modal ? (
-          <div ref={modalclose} className="absolute bg-gray-100 right-4">
+          <div ref={modalclose} className="absolute bg-gray-100  dark:bg-black right-4">
             <div>
               <div
                 onClick={(e) => handleDelete(id)}
-                className="cursor-pointer hover:bg-slate-300 pl-6 pr-6 pt-1 pb-1"
+                className="cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-900 pl-6 pr-6 pt-1 pb-1"
               >
                 Delete
               </div>
@@ -114,7 +114,7 @@ const TodoItem: React.FC<Props> = ({
             <div>
               <div
                 onClick={handleEditMove}
-                className="cursor-pointer hover:bg-slate-300 pl-6 pr-6 pt-1 pb-1"
+                className="cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-900 pl-6 pr-6 pt-1 pb-1"
               >
                 Edit
               </div>

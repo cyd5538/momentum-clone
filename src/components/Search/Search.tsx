@@ -42,14 +42,14 @@ const Search = () => {
   };
 
   return (
-    <div className="fixed top-2 left-4 text-black flex items-center">
+    <div className="fixed top-2 left-4 text-white dark:text-black flex items-center">
       <div className="mr-2">Links</div>
       <form className="flex items-center" onSubmit={handler}>
         <span className="mr-2">
           <BsSearch />
         </span>
         <input
-          className="pb-2 pl-2 bg-transparent border-b-2 border-black"
+          className="pb-2 pl-2 bg-transparent border-b-2 border-white dark:border-black"
           type="text"
           onChange={(e) => setText(e.target.value)}
         />
@@ -68,12 +68,12 @@ const Search = () => {
         {modal ? (
           <div
             ref={modalclose}
-            className="flex drop-shadow-2xl bg-white rounded absolute top-8 flex-col right-[-86px]"
+            className="flex drop-shadow-2xl bg-white text-black dark:bg-black dark:text-white rounded absolute top-8 flex-col right-[-86px]"
           >
             <div className="pl-2 pr-2 text-xs text-gray-500">SEARCH WITH</div>
             <div
               onClick={() => handleSelected("google")}
-              className="gap-1 p-2 cursor-pointer flex items-center hover:bg-gray-100"
+              className="gap-1 p-2 cursor-pointer flex items-center hover:bg-gray-200 dark:hover:bg-gray-800"
             >
               <span className="w-6 flex justify-center ">
                 <FcGoogle />
@@ -82,7 +82,7 @@ const Search = () => {
             </div>
             <div
               onClick={() => handleSelected("naver")}
-              className="gap-1 p-2 cursor-pointer flex items-center hover:bg-gray-100"
+              className="gap-1 p-2 cursor-pointer flex items-center hover:bg-gray-200 dark:hover:bg-gray-800"
             >
               <span className="w-6 flex justify-center bold text-lime-500">
                 N

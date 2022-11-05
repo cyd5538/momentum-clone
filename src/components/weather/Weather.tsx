@@ -47,7 +47,7 @@ const Weather:React.FC<Props> = ({weatherData, Icon }) => {
 
   return (
     <>
-        <div className="flex flex-col cursor-pointer bg-black/30 rounded-xl p-1"  onClick={() => setModal(true)}>
+        <div className="flex flex-col cursor-pointer dark:text-white bg-black/30 dark:bg-black/70  rounded-xl p-1 "  onClick={() => setModal(true)}>
             <div className="flex gap-2 items-center">
                 <div>
                     {weatherData ? (
@@ -70,7 +70,7 @@ const Weather:React.FC<Props> = ({weatherData, Icon }) => {
         {/*  dropDown */}
                         
         {modal ? (
-            <div ref={modalclose} className="opacity-100 transition-all bg-white/90 w-80 sm:w-96 h-48 text-black absolute mt-2 drop-shadow-lg border-none rounded-lg p-4 right-0">
+            <div ref={modalclose} className="opacity-100 transition-all dark:bg-black/90 dark:text-white bg-white/90 w-80 sm:w-96 h-48 text-black absolute mt-2 drop-shadow-lg border-none rounded-lg p-4 right-0">
             <h1 className="text-4xl font-bold">{weatherData?.name}</h1>
             <div className="text-xl text-gray-400">{weatherData?.weather[0].main}</div>
             <div className="flex justify-around mt-4">

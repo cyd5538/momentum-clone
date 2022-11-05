@@ -43,7 +43,7 @@ const HomeName: React.FC<Props> = ({ name, setName,  }) => {
   return (
     <>
       <div className="text-center ">
-        <div className="text-3xl text-center mb-4 relative group gap-2 flex justify-center">
+        <div className="text-3xl text-white dark:text-black text-center mb-4 relative group gap-2 flex justify-center">
           <div>
             Hello
           </div>
@@ -64,7 +64,7 @@ const HomeName: React.FC<Props> = ({ name, setName,  }) => {
           )}
           <div
             onClick={() => setModal(true)}
-            className="rounded-full bg-white/60 p-1  text-2xl text-center absolute hidden top-2 left-[-30px] md:left-2 text-black group-hover:block"
+            className="rounded-full bg-white/60 p-1 dark:bg-black/60 dark:text-white   text-2xl text-center absolute hidden top-1 left-[-30px] md:left-2 text-black group-hover:block"
           >
             <BsThreeDots />
           </div>
@@ -72,7 +72,7 @@ const HomeName: React.FC<Props> = ({ name, setName,  }) => {
             <div 
             ref={modalclose} 
             onClick={handleEditMove}
-            className="text-sm cursor-pointer hover:bg-neutral-300 hover:text-gray-500 font-semibold absolute top-6 left-[-100px] text-black bg-white/100 p-3">
+            className="dark:bg-black/80 dark:text-white text-sm cursor-pointer hover:bg-neutral-300 hover:text-gray-500 font-semibold absolute top-6 left-[-100px] text-black bg-white/100 p-3">
               Edit your Name
             </div>
           ) : (
