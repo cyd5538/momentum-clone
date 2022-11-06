@@ -40,7 +40,7 @@ function App() {
   const [data, setData] = useState<pic>();
   const [weatherData, setWeatherData] = useState<weather>();
   const [Icon, setIcon] = useState<string>("");
-
+  // const [search, setSearch] = useState<string>('');
   const location = useGeoLocation();
 
   const lat: number | undefined = location.coordinates?.lat;
@@ -64,22 +64,24 @@ function App() {
     }
   }, [lat, lng]);
 
-
-  const search = 'snow'
-  // 날씨에 맞는 사진을 가져오니깐 폰트색상과 매치가 안됨.
-  // const search = weatherData?.weather[0].main;
+  // 배경 api에 들어갈 변수
+  const search = JSON.parse(localStorage.getItem("bg")) ? JSON.parse(localStorage.getItem("bg")) : "winter";
 
   const { response, loading, error } = useAxios({
     method: "get",
     url: `${search}&client_id=Akd0vXXXO0l9zVUmQ-QuFMkPVkIcu51vPa-0Kif4z08&orientation=landscape&per_page=20`,
   });
 
-  useEffect(() => {
+  const handleBg = () => {
     if (response !== null) {
       // 20개 중에 랜덤으로 한개 추출
       let sPick = Math.floor(Math.random() * response?.data.results.length);
       setData(response?.data.results[sPick]);
     }
+  }
+
+  useEffect(() => {
+    handleBg()
   }, [response]);
 
   const handleSubmitName = (e: React.FormEvent<HTMLFormElement>) => {
@@ -91,6 +93,7 @@ function App() {
   
   useEffect(() => {
     if(localStorage.getItem("name")){
+      setTutorial(true);
       const name = JSON.parse(localStorage.getItem("name"));
       setName(name);
     }
@@ -131,7 +134,7 @@ function App() {
         className="h-screen w-full object-cover"
       />
 
-      {!name ? (
+      {!tutorial ? (
         <div className="absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2  rounded-xl">
             <div className="text-5xl font-bold text-center">Hello, What's your name? </div>
           <form onSubmit={handleSubmitName} className="mt-8">
@@ -148,7 +151,7 @@ function App() {
           <div className="absolute right-4 top-4 z-10">
             <Weather Icon={Icon} weatherData={weatherData} />
           </div>
-          <div className="bg-black/50 dark:bg-white/50  absolute top-1/4 right-1/2 translate-x-2/4 text-black text-6xl font-bold p-8 rounded-xl">
+          <div className="bg-white/30 dark:bg-black/60  absolute top-1/4 right-1/2 translate-x-2/4 text-black text-6xl font-bold p-8 rounded-xl">
             <Day />
             <HomeName name={name} setName={setName}/>
             <HomeTodo />

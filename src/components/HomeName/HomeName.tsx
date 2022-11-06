@@ -28,6 +28,9 @@ const HomeName: React.FC<Props> = ({ name, setName,  }) => {
   const HandleEdit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setName(editName);
+    if(editName === ""){
+      return alert("이름을 입력해주세요")
+    }
     localStorage.setItem("name", JSON.stringify(editName));
     setEdit(false);
   }
@@ -43,7 +46,7 @@ const HomeName: React.FC<Props> = ({ name, setName,  }) => {
   return (
     <>
       <div className="text-center ">
-        <div className="text-3xl text-white dark:text-black text-center mb-4 relative group gap-2 flex justify-center">
+        <div className="text-3xl text-black dark:text-white/80 text-center mb-4 relative group gap-2 flex justify-center">
           <div>
             Hello
           </div>

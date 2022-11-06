@@ -57,7 +57,7 @@ const TodoList = () => {
       </div>
       {modal ? (
         <div
-          className="absolute bottom-12 right-4 w-60 h-auto p-4 bg-white dark:bg-black/70  "
+          className="absolute bottom-12 right-4 w-60 h-auto p-4 bg-white/70 dark:bg-black/70  "
         >
           <div className="text-black dark:text-white">
             {textlist.map((text) => (

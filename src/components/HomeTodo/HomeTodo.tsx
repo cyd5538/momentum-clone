@@ -68,7 +68,7 @@ const HomeTodo = () => {
 
   return (
     <div>
-      <div className="text-2xl text-white dark:text-black flex flex-col gap-2">
+      <div className="text-2xl text-black dark:text-white/80 flex flex-col gap-2">
         {hometodo?.length !== 1 ? (
           <>
             <div>What is your main focus for today?</div>

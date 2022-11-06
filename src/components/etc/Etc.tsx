@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BsFillSunFill,BsFillMoonFill } from "react-icons/bs";
+import ImageChange from "./ImageChange";
 
 const Etc = () => {
   const [theme, setTheme] = useState<string>("light");
@@ -43,10 +44,9 @@ const Etc = () => {
   return (
     <div className="text-white dark:text-black font-bold fixed bottom-4 left-2">
         {modal ? 
-        <div className="bg-white text-black dark:bg-black/80 dark:text-white pl-12 pr-12 pt-2 pb-2" ref={modalclose}>
-
-            <div>기타</div>
-            <label className="inline-flex relative items-center cursor-pointer">
+        <div className="bg-white/60 flex flex-col items-center text-black dark:bg-black/60 dark:text-white pl-4 pr-4 pt-2 pb-2" ref={modalclose}>
+            <ImageChange />
+            <label className="mt-4 inline-flex  relative items-center cursor-pointer">
             <input type="checkbox" checked={theme === "light" ? true : false} className="sr-only peer"/>
             <div className="text-black flex justify-around items-center w-11 h-6 bg-gray-200  peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all ">
                 <div className="flex w-full justify-around items-center">
